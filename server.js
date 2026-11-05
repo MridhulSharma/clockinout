@@ -2,7 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
-require('./db/database');
+const { initSchema } = require('./db/database');
 const usersRouter = require('./routes/users');
 const deviceRouter = require('./routes/device');
 const attendanceRouter = require('./routes/attendance');
@@ -27,6 +27,15 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use('/clock', express.static(path.join(__dirname, 'public/clock')));
 app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
 
-app.listen(PORT, () => {
-  console.log(`Clock-in server listening on port ${PORT}`);
-});
+// Create the tables before accepting traffic, so a bad DATABASE_URL fails loudly
+// at startup instead of turning every request into a 500.
+initSchema()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Clock-in server listening on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to initialise the database schema:', err);
+    process.exit(1);
+  });
