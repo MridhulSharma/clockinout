@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="login-screen" class="screen">
+    <div class="login-box">
+      <h1>Admin Login</h1>
+      <form id="login-form">
+        <input id="password-input" type="password" placeholder="Password" autocomplete="current-password">
+        <button type="submit">Log In</button>
+      </form>
+      <div id="login-error" class="error hidden"></div>
+    </div>
+  </div>
+
+  <div id="dashboard-screen" class="screen hidden">
+    <header>
+      <h1>Attendance Dashboard</h1>
+      <div class="header-actions">
+        <button id="refresh-btn">Refresh</button>
+        <button id="reset-device-btn" class="danger">Reset Authorized Device</button>
+        <button id="logout-btn">Log Out</button>
+      </div>
+    </header>
+
+    <section class="add-user-section">
+      <h2>Add User</h2>
+      <form id="add-user-form">
+        <input id="new-user-id" type="text" placeholder="User ID" required>
+        <input id="new-user-name" type="text" placeholder="Name" required>
+        <button type="submit">Add User</button>
+      </form>
+    </section>
+
+    <div id="dashboard-message" class="message hidden"></div>
+
+    <div class="tabs">
+      <button id="tab-live" class="tab-btn active">Live Status</button>
+      <button id="tab-history" class="tab-btn">History</button>
+    </div>
+
+    <section id="live-status-section">
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Clock-in Time</th>
+            <th>Clock-out Time</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="users-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="history-section" class="hidden">
+      <table id="history-table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Clock-in Time</th>
+            <th>Clock-out Time</th>
+          </tr>
+        </thead>
+        <tbody id="history-table-body"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

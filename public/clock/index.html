@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Clock In / Clock Out</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Beacon Ambassador <br> Clock In / Out</h1>
+
+    <div id="blocked-banner" class="banner banner-error hidden">
+      This device is not authorized to clock in/out. Please contact your administrator.
+    </div>
+
+    <form id="clock-form" autocomplete="off">
+      <input
+        id="user-id-input"
+        type="text"
+        inputmode="text"
+        placeholder="Enter your ID"
+        autofocus
+        autocomplete="off"
+      >
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="message" class="message hidden"></div>
+  </div>
+
+  <script src="clock.js"></script>
+</body>
+</html>

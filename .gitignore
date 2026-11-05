@@ -1,0 +1,4 @@
+node_modules/
+db/clock.db
+.env
+db/clock.db-*
