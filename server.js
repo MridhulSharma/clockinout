@@ -11,6 +11,11 @@ const { router: authRouter } = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Render terminates TLS at a proxy, so the client IP arrives in X-Forwarded-For.
+// Without this every request looks like the proxy and the login rate limiter
+// would throttle all users as one. 1 = trust a single hop, not the whole chain.
+app.set('trust proxy', 1);
+
 app.use(cors());
 app.use(express.json());
 
